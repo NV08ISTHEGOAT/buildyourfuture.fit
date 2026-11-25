@@ -301,7 +301,7 @@
         <p class="intro">Build Your Future is installed with Sideloadly, a free tool for Windows and Mac. No App Store needed.</p>
         <div class="download">
           <div class="card">
-            <span class="pill">Latest version</span>
+            <span class="pill" id="version">Latest version</span>
             <h3 style="margin:12px 0 6px">BuildYourFuture.ipa</h3>
             <p style="margin-bottom:18px">One file for every Apple ID. Your account and data stay when you update.</p>
             <a class="btn btn-primary" href="BuildYourFuture.ipa" download>Download IPA</a>
@@ -329,6 +329,11 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    // Show which build the download is (VERSION.txt is updated with every new IPA).
+    fetch('VERSION.txt', { cache: 'no-store' })
+      .then(r => r.ok ? r.text() : '')
+      .then(v => { if (v.trim()) document.getElementById('version').textContent = 'Latest · ' + v.trim(); })
+      .catch(() => {});
     // Fade the daily message in line by line when it scrolls into view, like in the app.
     const msg = document.getElementById('message');
     msg.querySelectorAll('blockquote span').forEach((s, i) => { s.style.transitionDelay = (0.2 + i * 0.3) + 's'; });
