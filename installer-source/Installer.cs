@@ -93,6 +93,8 @@ namespace BuildYourFuture
         string version = "";
         DateTime started = DateTime.Now;
         DateTime lastAutoAttempt = DateTime.MinValue;
+        bool quietRefresh;
+        const int OpenAtDaysLeft = 3;   // the window only pops up by itself when this few days are left
         DateTime lastRemoteCheck = DateTime.Now;
         bool quitting;
         Process proc;
@@ -201,7 +203,7 @@ namespace BuildYourFuture
             };
             if (!personal)
             {
-                autoSub.Text = "Plug in, new version, or 1 day left (starts with Windows)";
+                autoSub.Text = "Opens at 3 days left, updates quietly (starts with Windows)";
                 if (settings) SetStartWithWindows(true);
             }
 
@@ -398,6 +400,12 @@ namespace BuildYourFuture
                 if (File.Exists(p)) return p;
             }
             return null;
+        }
+
+        bool HasNewVersion(string id)
+        {
+            string installed = InstalledVersion(id), newest = NewestVersion();
+            return installed.Length > 0 && newest.Length > 0 && installed != newest;
         }
 
         bool NeedsRefresh(string id)
@@ -745,6 +753,8 @@ namespace BuildYourFuture
         {
             if (udid == null) { SetStatus("Plug in your iPhone first.", "#FBBF24"); return; }
             if (phase != "idle" && phase != "countdown") return;
+            // "quiet" refreshes (a new version while plenty of days are left) don't pop up the window.
+            quietRefresh = reason.StartsWith("quiet");
             if (!File.Exists(engine)) { RefreshFailed("The signing engine is missing (engine\\plumesign.exe)."); return; }
             if (account.Length == 0) UpdateAccount();
             if (account.Length == 0)
@@ -886,7 +896,7 @@ namespace BuildYourFuture
             started = DateTime.Now;
             phase = "installing";
             workTimer.Interval = TimeSpan.FromSeconds(1);
-            ShowMain();
+            if (!quietRefresh) ShowMain();
         }
 
         void InstallTick()
@@ -953,26 +963,42 @@ namespace BuildYourFuture
                 if (newOne != null)
                 {
                     Log("iPhone connected: " + newOne);
-                    ShowMain();
-                    if (account.Length == 0) SetStatus("iPhone connected. Log in with your Apple ID once to start refreshing.", "#FBBF24");
+                    // Only pop up when it matters: 3 days or less left (or never installed / not logged in).
+                    var days = DaysLeft(newOne);
+                    bool low = days == null || days.Value <= OpenAtDaysLeft;
+                    if (account.Length == 0)
+                    {
+                        if (low) ShowMain();
+                        SetStatus("iPhone connected. Log in with your Apple ID once to start refreshing.", "#FBBF24");
+                    }
                     else if (autoSwitch.IsChecked == true && phase == "idle")
                     {
-                        if (NeedsRefresh(newOne)) StartCountdown();
-                        else SetStatus("All good: newest version, plenty of days left.", "#34D399");
+                        if (low) { ShowMain(); StartCountdown(); }
+                        else if (HasNewVersion(newOne))
+                        {
+                            lastAutoAttempt = DateTime.Now;
+                            StartRefresh("quiet (new version " + NewestVersion() + ")");
+                        }
+                        else SetStatus("All good: newest version, " + days.Value + " days left.", "#34D399");
                     }
-                    else if (phase == "idle") SetStatus("iPhone connected. Press Refresh now when you want.");
+                    else if (phase == "idle")
+                    {
+                        if (low) ShowMain();
+                        SetStatus("iPhone connected. Press Refresh now when you want.");
+                    }
                 }
                 else if (udid != null && account.Length > 0 && autoSwitch.IsChecked == true && phase == "idle")
                 {
-                    // Plugged in for a long time: refresh when only 1 day is left, or when a new version
-                    // came out (at most once an hour).
+                    // Plugged in for a long time (at most once an hour): at 3 days left refresh with the window,
+                    // a new version installs quietly.
                     var days = DaysLeft(udid);
-                    string installed = InstalledVersion(udid), newest = NewestVersion();
-                    bool newVersion = installed.Length > 0 && newest.Length > 0 && installed != newest;
-                    if (((days != null && days.Value <= 1) || newVersion) && (DateTime.Now - lastAutoAttempt).TotalMinutes > 60)
+                    bool low = days != null && days.Value <= OpenAtDaysLeft;
+                    bool newVersion = HasNewVersion(udid);
+                    if ((low || newVersion) && (DateTime.Now - lastAutoAttempt).TotalMinutes > 60)
                     {
                         lastAutoAttempt = DateTime.Now;
-                        StartRefresh(newVersion ? "auto (new version " + newest + ")" : "auto (1 day left)");
+                        if (low) { ShowMain(); StartRefresh("auto (" + days.Value + " days left)"); }
+                        else StartRefresh("quiet (new version " + NewestVersion() + ")");
                     }
                 }
             }
