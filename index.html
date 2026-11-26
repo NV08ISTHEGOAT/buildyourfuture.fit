@@ -28,6 +28,7 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: 76px; }
     body {
       background: var(--bg);
       color: var(--text);
@@ -170,6 +171,11 @@
     .download ol { padding-left: 20px; color: var(--muted); }
     .download li { margin-bottom: 8px; }
     .download li b { color: var(--text); }
+    .video { padding: 0; overflow: hidden; border-radius: 18px; margin-bottom: 12px; }
+    .video:hover { transform: none; }
+    .video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+    .video-cap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    .video-cap b { color: var(--text); }
     .pill { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; background: rgba(52,211,153,.15); color: var(--good); }
 
     footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 13px; }
@@ -186,6 +192,7 @@
       <nav class="nav">
         <a href="#how">How it works</a>
         <a href="#features">Features</a>
+        <a href="#install-video">Install video</a>
         <a href="#download" class="cta-mini">Get the app</a>
       </nav>
     </div>
@@ -299,6 +306,12 @@
         <p class="label">Get the app</p>
         <h2>iPhone · iOS 16 or newer</h2>
         <p class="intro">Build Your Future is installed with Sideloadly, a free tool for Windows and Mac. No App Store needed.</p>
+        <div class="card video" id="install-video">
+          <video controls playsinline preload="metadata" poster="install-guide.jpg">
+            <source src="install-guide.mp4" type="video/mp4">
+          </video>
+          <div class="video-cap"><b>Watch: install it in 5 minutes</b> · every step with Sideloadly, from download to opening the app (with voice-over)</div>
+        </div>
         <div class="download">
           <div class="card">
             <span class="pill" id="version">Latest version</span>
@@ -309,11 +322,13 @@
           <div class="card">
             <h3 style="margin-bottom:10px">How to install</h3>
             <ol>
-              <li>Install <b>Sideloadly</b> on your PC or Mac and connect your iPhone.</li>
-              <li>Drag <b>BuildYourFuture.ipa</b> into Sideloadly, sign in with your Apple ID and press <b>Start</b>.</li>
-              <li>On your iPhone: <b>Settings → General → VPN & Device Management</b> → trust your Apple ID.</li>
-              <li>iOS 16+: turn on <b>Developer Mode</b> in Settings → Privacy & Security.</li>
+              <li>Install <b>Sideloadly</b> on your PC or Mac (on Windows also iTunes + iCloud from apple.com, not the Microsoft Store).</li>
+              <li>Connect your iPhone with a cable and tap <b>Trust</b>.</li>
+              <li>Drag <b>BuildYourFuture.ipa</b> into Sideloadly, type your Apple ID and press <b>Start</b>.</li>
+              <li>iOS 16+: turn on <b>Developer Mode</b> in Settings → Privacy & Security, then restart.</li>
+              <li><b>Settings → General → VPN & Device Management</b> → tap your Apple ID → <b>Trust</b>.</li>
             </ol>
+            <p style="margin-top:10px;font-size:13px">Free Apple ID: the app works for 7 days. Plug in and press Start again to refresh. Your data stays.</p>
           </div>
         </div>
       </div>
