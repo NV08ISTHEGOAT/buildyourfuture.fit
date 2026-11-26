@@ -93,6 +93,7 @@ namespace BuildYourFuture
         string version = "";
         DateTime started = DateTime.Now;
         DateTime lastAutoAttempt = DateTime.MinValue;
+        DateTime lastRemoteCheck = DateTime.Now;
         bool quitting;
         Process proc;
         readonly StringBuilder procOut = new StringBuilder();
@@ -200,7 +201,7 @@ namespace BuildYourFuture
             };
             if (!personal)
             {
-                autoSub.Text = "When you plug in, or when 1 day is left (starts with Windows)";
+                autoSub.Text = "Plug in, new version, or 1 day left (starts with Windows)";
                 if (settings) SetStartWithWindows(true);
             }
 
@@ -943,6 +944,12 @@ namespace BuildYourFuture
                     if (phase == "countdown" && udid == null) { workTimer.Stop(); phase = "idle"; SetStatus("iPhone unplugged.", "#9AA4B5"); }
                 }
                 UpdateView();
+                // Public: look on the website for a new version every 3 hours (small text file).
+                if (!personal && phase == "idle" && (DateTime.Now - lastRemoteCheck).TotalHours >= 3)
+                {
+                    lastRemoteCheck = DateTime.Now;
+                    StartDownload(false);
+                }
                 if (newOne != null)
                 {
                     Log("iPhone connected: " + newOne);
@@ -957,12 +964,15 @@ namespace BuildYourFuture
                 }
                 else if (udid != null && account.Length > 0 && autoSwitch.IsChecked == true && phase == "idle")
                 {
-                    // Plugged in for a long time: refresh when only 1 day is left (at most once an hour).
+                    // Plugged in for a long time: refresh when only 1 day is left, or when a new version
+                    // came out (at most once an hour).
                     var days = DaysLeft(udid);
-                    if (days != null && days.Value <= 1 && (DateTime.Now - lastAutoAttempt).TotalMinutes > 60)
+                    string installed = InstalledVersion(udid), newest = NewestVersion();
+                    bool newVersion = installed.Length > 0 && newest.Length > 0 && installed != newest;
+                    if (((days != null && days.Value <= 1) || newVersion) && (DateTime.Now - lastAutoAttempt).TotalMinutes > 60)
                     {
                         lastAutoAttempt = DateTime.Now;
-                        StartRefresh("auto (1 day left)");
+                        StartRefresh(newVersion ? "auto (new version " + newest + ")" : "auto (1 day left)");
                     }
                 }
             }

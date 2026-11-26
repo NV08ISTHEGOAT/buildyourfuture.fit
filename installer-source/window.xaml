@@ -242,7 +242,7 @@
         <CheckBox x:Name="AutoSwitch" Style="{StaticResource Switch}" IsChecked="True">
           <StackPanel>
             <TextBlock Text="Auto-refresh" Foreground="#E8ECF4" FontSize="14" FontWeight="Bold"/>
-            <TextBlock x:Name="AutoSub" Text="When you plug in, or when 1 day is left" Foreground="#9AA4B5" FontSize="12"/>
+            <TextBlock x:Name="AutoSub" Text="Plug in, new version, or 1 day left" Foreground="#9AA4B5" FontSize="12"/>
           </StackPanel>
         </CheckBox>
       </Border>
