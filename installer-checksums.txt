@@ -1,0 +1,5 @@
+Build Your Future Installer - SHA-256 checksums
+
+1d63d685d574756b1592013a1cfebd605335d2e63efb3743176ad5d9f0f66957  BuildYourFutureInstaller.zip
+fb40f6e24ff389c3dc2a26cbb566c323aedf0dc43cf83ef224482fc24fc3a3ee  Build Your Future Installer.exe
+94664749fbbceb9a16bf89583f473dafb9b35c8d058a9d8665dc963b3453c6fc  engine/plumesign.exe (Impactor v2.7.3, same file as github.com/claration/impactor/releases/tag/v2.7.3)

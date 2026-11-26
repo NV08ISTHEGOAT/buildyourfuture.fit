@@ -6,6 +6,7 @@
   <title>Build Your Future — brick by brick</title>
   <meta name="description" content="List your problems. Roll one every day. Prove you worked it. At 17:00 your apps lock until you do.">
   <meta name="theme-color" content="#0E1117">
+  <meta name="copyright" content="© 2026 Build Your Future. All rights reserved.">
   <meta property="og:title" content="Build Your Future — brick by brick">
   <meta property="og:description" content="List your problems. Roll one every day. Prove you worked it.">
   <meta property="og:image" content="https://buildyourfuture.fit/icon.png">
@@ -196,6 +197,7 @@
         <a href="#how">How it works</a>
         <a href="#features">Features</a>
         <a href="#install-video">Install video</a>
+        <a href="#safety">Safety</a>
         <a href="#download" class="cta-mini">Get the app</a>
       </nav>
     </div>
@@ -309,7 +311,7 @@
       <div class="wrap">
         <p class="label">Get the app</p>
         <h2>iPhone · iOS 16 or newer</h2>
-        <p class="intro">Build Your Future is installed with Sideloadly, a free tool for Windows and Mac. No App Store needed.</p>
+        <p class="intro">On Windows, the free <b>Build Your Future Installer</b> puts the app on your iPhone and keeps it working. On a Mac, or if you already use Sideloadly, download the IPA. No App Store needed.</p>
         <div class="card video" id="install-video">
           <video controls playsinline preload="metadata" poster="install-guide.jpg">
             <source src="install-guide.mp4" type="video/mp4">
@@ -318,35 +320,73 @@
         </div>
         <div class="download">
           <div class="card">
-            <span class="pill" id="version">Latest version</span>
-            <h3 style="margin:12px 0 6px">BuildYourFuture.ipa</h3>
-            <p style="margin-bottom:18px">One file for every Apple ID. Your account and data stay when you update.</p>
+            <span class="pill">Recommended · Windows</span>
+            <h3 style="margin:12px 0 6px">Build Your Future Installer</h3>
+            <p style="margin-bottom:18px">Installs the app on your iPhone over USB and keeps it working: plug in and it refreshes by itself every 7 days and installs the newest version. No Sideloadly needed.</p>
             <div class="dl-buttons">
-              <a class="btn btn-primary" href="BuildYourFuture.ipa" download>Download IPA</a>
-              <a class="btn btn-secondary" href="https://sideloadly.io/" target="_blank" rel="noopener">Download Sideloadly</a>
-              <p class="dl-note">Sideloadly is free, for Windows and Mac. It installs the IPA on your iPhone.</p>
+              <a class="btn btn-primary" href="BuildYourFutureInstaller.zip" download>Download for Windows</a>
+              <p class="dl-note">Windows 10 / 11 · 5.3 MB · needs iTunes or the Apple Devices app (for the iPhone USB driver)<br>
+                <a href="installer-checksums.txt" style="color:var(--accent)">SHA-256 checksums</a> ·
+                <a href="installer-source/Installer.cs" style="color:var(--accent)">source code</a> ·
+                <a href="#safety" style="color:var(--accent)">is it safe?</a><br>
+                By downloading you agree to the <a href="eula.html" style="color:var(--accent)">EULA</a>.</p>
             </div>
           </div>
           <div class="card">
-            <h3 style="margin-bottom:10px">How to install</h3>
+            <span class="pill" id="version">Latest version</span>
+            <h3 style="margin:12px 0 6px">iPhone app (IPA)</h3>
+            <p style="margin-bottom:18px">For Mac, or if you already use Sideloadly or AltStore. Your account and data stay when you update.</p>
+            <div class="dl-buttons">
+              <a class="btn btn-secondary" href="BuildYourFuture.ipa" download>Download IPA</a>
+              <a class="btn btn-secondary" href="https://sideloadly.io/" target="_blank" rel="noopener">Get Sideloadly</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:10px">With the Windows installer</h3>
             <ol>
-              <li>Install <b>Sideloadly</b> on your PC or Mac (on Windows also iTunes + iCloud from apple.com, not the Microsoft Store).</li>
-              <li>Connect your iPhone with a cable and tap <b>Trust</b>.</li>
-              <li>Drag <b>BuildYourFuture.ipa</b> into Sideloadly, type your Apple ID and press <b>Start</b>.</li>
-              <li>iOS 16+: turn on <b>Developer Mode</b> in Settings → Privacy & Security, then restart.</li>
-              <li><b>Settings → General → VPN & Device Management</b> → tap your Apple ID → <b>Trust</b>.</li>
+              <li>Unzip and open <b>Build Your Future Installer</b>.</li>
+              <li>Log in with your Apple ID once, inside the installer (Apple may send a code to your iPhone or Mac).</li>
+              <li>Plug in your iPhone, unlock it, tap <b>Trust</b>, press <b>Refresh now</b>.</li>
+              <li>First time on the iPhone: <b>Settings → Privacy &amp; Security → Developer Mode</b> on (restart), then <b>Settings → General → VPN &amp; Device Management</b> → your Apple ID → <b>Trust</b>.</li>
             </ol>
-            <p style="margin-top:10px;font-size:13px">Free Apple ID: the app works for 7 days. Plug in and press Start again to refresh. Your data stays.</p>
+            <p style="margin-top:10px;font-size:13px">After that: plug in once a week and it refreshes by itself. Your data stays.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:10px">With Sideloadly (Mac or Windows)</h3>
+            <ol>
+              <li>Install <b>Sideloadly</b> (on Windows also iTunes + iCloud from apple.com, not the Microsoft Store).</li>
+              <li>Connect your iPhone and tap <b>Trust</b>.</li>
+              <li>Drag <b>BuildYourFuture.ipa</b> into Sideloadly, type your Apple ID and press <b>Start</b>.</li>
+              <li>Developer Mode + Trust on the iPhone, like above.</li>
+            </ol>
+            <p style="margin-top:10px;font-size:13px">Free Apple ID: works for 7 days, then press Start again.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="safety">
+      <div class="wrap">
+        <p class="label">Your Apple ID is safe</p>
+        <h2>We never see your Apple ID.</h2>
+        <p class="intro">An iPhone only runs apps from outside the App Store when they're signed with an Apple ID. With a free Apple ID this is Apple's own "Personal Team" signing, the same thing Apple's Xcode, Sideloadly and AltStore use.</p>
+        <div class="grid">
+          <div class="card"><div class="chip" style="background:#0D9488">1</div><h3>Goes straight to Apple</h3><p>Your Apple ID and password go from your own PC directly to Apple's servers to sign the app. They are never sent to Build Your Future, to this website, or to anyone else.</p></div>
+          <div class="card"><div class="chip" style="background:#3B82F6">2</div><h3>Saved only on your PC</h3><p>The login stays on your computer so you don't have to type it again. Remove it any time by deleting the folder <b>%APPDATA%\PlumeImpactor</b>.</p></div>
+          <div class="card"><div class="chip" style="background:#7B5CFF">3</div><h3>Only installs this app</h3><p>The installer signs and installs Build Your Future on your own iPhone, nothing else. Apple makes that free signing expire after 7 days; that's why it refreshes weekly.</p></div>
+          <div class="card"><div class="chip" style="background:#D97706">4</div><h3>Open source, check it</h3><p>The signing engine is the open-source <a href="https://github.com/claration/impactor" target="_blank" rel="noopener" style="color:var(--accent)">Impactor</a> project (MIT), included unchanged. The installer's own <a href="installer-source/Installer.cs" style="color:var(--accent)">source code</a> is public too.</p></div>
+          <div class="card"><div class="chip" style="background:#65A30D">5</div><h3>Verify the download</h3><p>Compare the file with its <a href="installer-checksums.txt" style="color:var(--accent)">SHA-256 checksums</a>. The engine is byte-for-byte the official Impactor v2.7.3 release.</p></div>
+          <div class="card"><div class="chip" style="background:#000;border:1px solid #272D39"></div><h3>Apple's own explanation</h3><p>Apple's developer page explains free Apple IDs: a "Personal Team" for testing on your own device, expiring after 7 days. <a href="https://developer.apple.com/support/compare-memberships/" target="_blank" rel="noopener" style="color:var(--accent)">Read it on apple.com</a>.</p></div>
+        </div>
+        <p style="margin-top:18px;color:var(--muted);font-size:14px">Want to be extra careful? It works with any Apple ID, so you can use a separate one just for installing apps. Read the full <a href="privacy.html" style="color:var(--accent)">Privacy &amp; Apple ID policy</a>.</p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="wrap">
-      <span>© <span id="year">2026</span> Build Your Future · brick by brick</span>
-      <span>buildyourfuture.fit</span>
+      <span>© <span id="year">2026</span> Build Your Future. All rights reserved.</span>
+      <span><a href="eula.html">EULA &amp; Terms</a> · <a href="privacy.html">Privacy &amp; Apple ID</a> · buildyourfuture.fit</span>
     </div>
   </footer>
 

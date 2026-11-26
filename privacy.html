@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy &amp; Apple ID policy · Build Your Future</title>
+  <meta name="description" content="How Build Your Future and the Build Your Future Installer handle your data and your Apple ID.">
+  <meta name="theme-color" content="#0E1117">
+  <link rel="icon" href="icon.png">
+  <style>
+    :root { --bg:#0E1117; --card:#161A22; --line:#272D39; --text:#E8ECF4; --muted:#9AA4B5; --accent:#7090FF; --good:#34D399; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+    a { color: var(--accent); }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+    header { border-bottom: 1px solid var(--line); }
+    header .wrap { display: flex; align-items: center; gap: 14px; height: 80px; }
+    header img { width: 46px; height: 46px; border-radius: 12px; border: 1px solid var(--line); }
+    header b { font-size: 19px; display: block; line-height: 1.1; }
+    header small { color: var(--muted); font-size: 14px; }
+    main { padding: 40px 0 60px; }
+    h1 { font-size: clamp(30px, 5vw, 42px); line-height: 1.1; margin-bottom: 10px; }
+    .updated { color: var(--muted); font-size: 14px; margin-bottom: 26px; }
+    .summary { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; margin-bottom: 30px; }
+    .summary li { margin: 6px 0 6px 20px; }
+    .summary b { color: var(--good); }
+    h2 { font-size: 22px; margin: 30px 0 10px; }
+    p, li { color: #C9D0DC; }
+    ul { margin: 8px 0 8px 22px; }
+    li { margin: 4px 0; }
+    code { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 14px; }
+    footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a href="index.html"><img src="icon.png" alt="Build Your Future"></a>
+      <span><b>Build Your Future</b><small>Privacy &amp; Apple ID policy</small></span>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1>Privacy &amp; Apple ID policy</h1>
+      <p class="updated">Last updated: 26 November 2026 · applies to the Build Your Future iPhone app, the Build Your Future Installer for Windows, and buildyourfuture.fit.</p>
+
+      <div class="summary">
+        <p style="color:var(--text);font-weight:700;margin-bottom:6px">In short</p>
+        <ul>
+          <li><b>We never receive your Apple ID or password.</b> They go from your own computer directly to Apple.</li>
+          <li><b>We can't use, see or change your Apple ID</b>, your iCloud, your photos or anything else in your Apple account.</li>
+          <li><b>Your login is saved only on your own PC</b>, and you can delete it at any time.</li>
+          <li><b>The installer only signs and installs Build Your Future</b> on your own iPhone.</li>
+          <li><b>Your data in the app stays on your iPhone.</b> No ads, no trackers, no selling of data.</li>
+        </ul>
+      </div>
+
+      <h2>Why the installer asks for your Apple ID</h2>
+      <p>An iPhone only runs apps from outside the App Store when they are signed for that iPhone with an Apple ID. With a free Apple ID this is Apple's own free signing for developers (Apple calls it a <i>Personal Team</i>): Apple gives your Apple ID a free development certificate, registers your iPhone, and the app keeps working for 7 days. This is the same mechanism used by Apple's Xcode and by tools like Sideloadly and AltStore. Apple explains free Apple IDs and the 7-day limit on its own page: <a href="https://developer.apple.com/support/compare-memberships/" target="_blank" rel="noopener">developer.apple.com/support/compare-memberships</a>.</p>
+
+      <h2>What happens with your Apple ID</h2>
+      <ul>
+        <li>You type your Apple ID and password into the installer on your own computer. The password is passed straight to the signing engine and is never shown, written to a file or logged.</li>
+        <li>The engine sends them only to Apple's servers (<code>gsa.apple.com</code> for the login and <code>developerservices2.apple.com</code> for the free certificate and device registration), over HTTPS.</li>
+        <li>To log in from a computer that isn't a Mac, Apple requires extra "device identity" data. The engine gets this from a public helper server used by open-source sideloading tools (<code>mac-ani.jkcoxson.com</code>). That server never receives your Apple ID or your password.</li>
+        <li>After logging in, the engine keeps a login token on your PC in <code>%APPDATA%\PlumeImpactor</code> so you don't have to log in every week. Delete that folder to remove it.</li>
+        <li>Nothing about your Apple ID is ever sent to Build Your Future, to buildyourfuture.fit or to any other server.</li>
+      </ul>
+
+      <h2>What the installer changes in your Apple account</h2>
+      <p>Only what Apple's free signing needs, and nothing else: a free development certificate, your iPhone in the list of your test devices, and an app identifier for Build Your Future. Apple makes these expire automatically (after 7 days for free Apple IDs). The installer doesn't touch your iCloud, purchases, payments, photos, contacts, messages or settings, and it can't.</p>
+      <p>If you'd like to keep things completely separate, you can use a second Apple ID just for installing apps.</p>
+
+      <h2>Open source and verifiable</h2>
+      <ul>
+        <li>The signing engine is <code>plumesign</code> from the open-source <a href="https://github.com/claration/impactor" target="_blank" rel="noopener">Impactor</a> project (MIT license), included unchanged: it is the official v2.7.3 release file.</li>
+        <li>The installer's own source code is public: <a href="installer-source/Installer.cs">Installer.cs</a>, <a href="installer-source/window.xaml">window.xaml</a>, <a href="installer-source/build.ps1">build.ps1</a>.</li>
+        <li>Check your download against the <a href="installer-checksums.txt">SHA-256 checksums</a>.</li>
+      </ul>
+
+      <h2>The Build Your Future iPhone app</h2>
+      <ul>
+        <li>Your account, problems, proofs, workouts, food log and goals are stored on your iPhone (with a backup in your iPhone's Keychain so they survive a reinstall).</li>
+        <li>Proof photos and videos stay on your iPhone.</li>
+        <li>Optional features that use the internet: the 3D exercise view loads a 3D library from a public CDN; if you add your own Anthropic API key, food-photo estimates send that photo to Anthropic (Claude) to estimate it.</li>
+        <li>No ads, no analytics, no tracking.</li>
+      </ul>
+
+      <h2>The website</h2>
+      <p>buildyourfuture.fit is a static site hosted on GitHub Pages. It has no cookies, no analytics and no forms. GitHub may keep standard server logs, as with any website.</p>
+
+      <h2>Changes</h2>
+      <p>If any of this changes (for example when new online features are added), this page is updated before the change goes live.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Build Your Future. All rights reserved. · <a href="eula.html">EULA &amp; Terms</a> · <a href="index.html">buildyourfuture.fit</a></div>
+  </footer>
+</body>
+</html>
