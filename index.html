@@ -155,6 +155,13 @@
     .lockband h2 { color: #fff; font-weight: 900; text-transform: uppercase; letter-spacing: 0; }
     .lockband p { color: rgba(255,255,255,.9); max-width: 620px; }
 
+    /* Closing line */
+    .closer { text-align: center; padding: 90px 0 100px; position: relative; overflow: hidden; }
+    .closer::before { content: ""; position: absolute; left: 50%; top: 50%; width: 760px; height: 760px; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(112,144,255,.22), transparent); pointer-events: none; }
+    .closer h2 { font-size: clamp(44px, 8vw, 88px); font-weight: 900; letter-spacing: -.02em; line-height: 1.02; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; position: relative; }
+    .closer p { font-size: clamp(20px, 3vw, 28px); font-weight: 800; margin: 16px 0 30px; position: relative; }
+    .closer .btn { position: relative; }
+
     /* Daily message */
     .message {
       background: #000; border: 1px solid var(--line); border-radius: 22px; padding: 40px; position: relative; overflow: hidden;
@@ -253,7 +260,7 @@
           <div class="card step"><h3>Write your problems</h3><p>Type them or just say them. Sort them into sections like School, Gym or Mindset. Or tick them from 100 common ones.</p></div>
           <div class="card step"><h3><span class="time">17:00</span> it locks</h3><p>Every day at 17:00 TikTok, games and the rest lock. School apps stay open.</p></div>
           <div class="card step"><h3>Roll a problem</h3><p>A slot-machine roll picks one, from all sections or the one you choose. No rerolls.</p></div>
-          <div class="card step"><h3>Show proof</h3><p>Work it, add a photo or video as proof, and everything unlocks. Brick laid.</p></div>
+          <div class="card step"><h3>Show proof</h3><p>Work it, add a photo or video as proof. AI checks it's real, then everything unlocks. Brick laid.</p></div>
         </div>
       </div>
     </section>
@@ -378,7 +385,15 @@
           <div class="card"><div class="chip" style="background:#65A30D">5</div><h3>Verify the download</h3><p>Compare the file with its <a href="installer-checksums.txt" style="color:var(--accent)">SHA-256 checksums</a>. The engine is byte-for-byte the official Impactor v2.7.3 release.</p></div>
           <div class="card"><div class="chip" style="background:#000;border:1px solid #272D39"></div><h3>Apple's own explanation</h3><p>Apple's developer page explains free Apple IDs: a "Personal Team" for testing on your own device, expiring after 7 days. <a href="https://developer.apple.com/support/compare-memberships/" target="_blank" rel="noopener" style="color:var(--accent)">Read it on apple.com</a>.</p></div>
         </div>
-        <p style="margin-top:18px;color:var(--muted);font-size:14px">Want to be extra careful? It works with any Apple ID, so you can use a separate one just for installing apps. Read the full <a href="privacy.html" style="color:var(--accent)">Privacy &amp; Apple ID policy</a>.</p>
+        <p style="margin-top:18px;color:var(--muted);font-size:14px">The app itself can't see or access your phone, your other apps or your messages. Your problems and proofs stay on your iPhone. Want to be extra careful? It works with any Apple ID, so you can use a separate one just for installing apps. Read the full <a href="privacy.html" style="color:var(--accent)">Privacy &amp; Apple ID policy</a>.</p>
+      </div>
+    </section>
+
+    <section class="closer" id="keep-going">
+      <div class="wrap">
+        <h2>Keep going, man.</h2>
+        <p>I believe in you. God believes in you.</p>
+        <a class="btn btn-primary" href="#download">Start building</a>
       </div>
     </section>
   </main>

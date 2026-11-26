@@ -82,7 +82,9 @@
       <h2>The Build Your Future iPhone app</h2>
       <ul>
         <li>Your account, problems, proofs, workouts, food log and goals are stored on your iPhone (with a backup in your iPhone's Keychain so they survive a reinstall).</li>
-        <li>Proof photos and videos stay on your iPhone.</li>
+        <li><b>AI proof check.</b> When you submit proof, the photos (or a few still frames from your video), the problem text and your note are sent over an encrypted connection to our proof checker, which asks Anthropic's Claude AI if the proof really shows the problem worked on. Our server does not save the images or the text. It keeps only a short technical log line (the verdict, the time and a scrambled, shortened code instead of your IP address, used for rate limits). Anthropic processes the images under its commercial API terms, does not train its AI on them, and may keep them for a limited time for safety checks, as described in <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic's privacy policy</a>.</li>
+        <li>Your saved proof photos and videos stay on your iPhone. Nobody else can see them, not even us.</li>
+        <li>The app can't see or access your phone, your other apps, your messages or your Apple ID. With Screen Time (paid accounts), Apple only gives the app a sealed reference to the apps you choose to lock, never their contents.</li>
         <li>Optional features that use the internet: the 3D exercise view loads a 3D library from a public CDN; if you add your own Anthropic API key, food-photo estimates send that photo to Anthropic (Claude) to estimate it.</li>
         <li>No ads, no analytics, no tracking.</li>
       </ul>
