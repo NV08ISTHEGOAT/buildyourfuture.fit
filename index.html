@@ -28,7 +28,7 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    [id] { scroll-margin-top: 76px; }
+    [id] { scroll-margin-top: 96px; }
     body {
       background: var(--bg);
       color: var(--text);
@@ -45,19 +45,20 @@
       backdrop-filter: saturate(1.4) blur(12px);
       border-bottom: 1px solid var(--line);
     }
-    .topbar .wrap { display: flex; align-items: center; gap: 12px; height: 60px; }
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .brand img { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--line); }
-    .brand b { display: block; font-size: 15px; line-height: 1.1; }
-    .brand small { display: block; color: var(--muted); font-size: 12px; line-height: 1.1; }
-    .nav { margin-left: auto; display: flex; gap: 6px; }
+    .topbar .wrap { display: flex; align-items: center; gap: 14px; height: 80px; max-width: 1200px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 50px; height: 50px; border-radius: 13px; border: 1px solid var(--line); }
+    .brand b { display: block; font-size: 20px; line-height: 1.15; }
+    .brand small { display: block; color: var(--muted); font-size: 15px; line-height: 1.2; }
+    .nav { margin-left: auto; display: flex; align-items: center; gap: 8px; }
     .nav a {
-      font-size: 14px; color: var(--muted); padding: 8px 12px; border-radius: 10px;
+      font-size: 17px; color: var(--muted); padding: 11px 16px; border-radius: 12px;
       transition: color .15s, background .15s;
     }
     .nav a:hover { color: var(--text); background: var(--card); }
     @media (max-width: 640px) { .nav a:not(.cta-mini) { display: none; } }
-    .cta-mini { color: #fff !important; background: var(--grad); font-weight: 700; }
+    .cta-mini { color: #fff !important; background: var(--grad); font-weight: 700; padding: 12px 20px !important; }
+    @media (max-width: 640px) { .topbar .wrap { height: 66px; } .brand img { width: 40px; height: 40px; } .brand b { font-size: 17px; } .brand small { font-size: 13px; } .nav a { font-size: 15px; } }
 
     /* Buttons with the glow-on-press feel from the app */
     .btn {
@@ -176,6 +177,8 @@
     .video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
     .video-cap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
     .video-cap b { color: var(--text); }
+    .dl-buttons { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .dl-note { font-size: 13px; color: var(--muted); margin-top: 2px; }
     .pill { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; background: rgba(52,211,153,.15); color: var(--good); }
 
     footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 13px; }
@@ -317,7 +320,11 @@
             <span class="pill" id="version">Latest version</span>
             <h3 style="margin:12px 0 6px">BuildYourFuture.ipa</h3>
             <p style="margin-bottom:18px">One file for every Apple ID. Your account and data stay when you update.</p>
-            <a class="btn btn-primary" href="BuildYourFuture.ipa" download>Download IPA</a>
+            <div class="dl-buttons">
+              <a class="btn btn-primary" href="BuildYourFuture.ipa" download>Download IPA</a>
+              <a class="btn btn-secondary" href="https://sideloadly.io/" target="_blank" rel="noopener">Download Sideloadly</a>
+              <p class="dl-note">Sideloadly is free, for Windows and Mac. It installs the IPA on your iPhone.</p>
+            </div>
           </div>
           <div class="card">
             <h3 style="margin-bottom:10px">How to install</h3>
