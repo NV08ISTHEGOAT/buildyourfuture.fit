@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Store · Build Your Future</title>
-  <meta name="description" content="Build Your Future merch: oversized and regular hoodies, heavyweight tees, compression tee and baggy gym sweatpants. Drop 001, coming soon.">
+  <meta name="description" content="Build Your Future merch, Drop 001: oversized and regular hoodies, heavyweight and regular tees, a compression tee and baggy gym sweatpants. Made to order, shipped to the EU and UK.">
   <meta name="copyright" content="© 2026 Build Your Future. All rights reserved.">
   <meta name="theme-color" content="#0E1117">
   <meta property="og:title" content="Build Your Future · Store">
@@ -69,6 +69,19 @@
     .sizes { display: flex; gap: 6px; margin: 4px 0 6px; }
     .sizes span { min-width: 38px; text-align: center; border: 1px solid var(--line); border-radius: 9px; padding: 4px 0; font-size: 13px; font-weight: 700; color: var(--text); background: var(--card2); }
     .soon { margin-top: auto; height: 46px; border-radius: 12px; border: 1px dashed #3a4152; color: var(--muted); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; }
+    .price { font-size: 24px; font-weight: 900; line-height: 1.1; margin-top: 2px; }
+    .price small { font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 6px; }
+    .sizes button { min-width: 44px; height: 38px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 14px; font-weight: 800; color: var(--text); background: var(--card2); cursor: pointer; transition: border-color .15s, background .15s; }
+    .sizes button:hover { border-color: #4a5468; }
+    .sizes button.sel { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 22%, var(--card2)); }
+    .sizes button:disabled { opacity: .35; cursor: not-allowed; text-decoration: line-through; }
+    .buy { margin-top: auto; height: 50px; border-radius: 12px; border: 1px dashed #3a4152; background: transparent; color: var(--muted); font: inherit; font-weight: 800; font-size: 16px; cursor: not-allowed; }
+    .buy.live { border: 0; background: var(--grad); color: #fff; cursor: pointer; }
+    .buy.live:disabled { opacity: .7; cursor: wait; }
+    .msg { min-height: 20px; font-size: 13.5px; color: var(--muted); }
+    .msg.err { color: #FF8A8A; }
+    .testnote { display: none; margin-bottom: 18px; border: 1px solid #6b5a1e; background: #2a2412; color: #F5D77A; border-radius: 12px; padding: 10px 14px; font-size: 14px; }
+    .paynote { color: var(--muted); font-size: 14px; margin-top: 16px; }
 
     table.specs { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
     .specs th, .specs td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); font-size: 15px; vertical-align: top; }
@@ -113,14 +126,14 @@
     <div class="hero">
       <div class="wrap">
         <div>
-          <span class="drop">DROP 001 · COMING SOON</span>
+          <span class="drop" id="dropBadge">DROP 001 · COMING SOON</span>
           <h1>Wear the work.</h1>
           <p class="lead">Heavyweight hoodies, tees, a compression tee and baggy gym sweatpants that stack over your shoes. Clean black, the Build Your Future logo on the chest. Made for people who show up every day.</p>
           <div class="facts">
-            <span class="fact">Heavyweight cotton</span>
+            <span class="fact">From €25</span>
             <span class="fact">Sizes XS – XL</span>
-            <span class="fact">Made to order</span>
-            <span class="fact">Shipped from Europe</span>
+            <span class="fact">Made to order in Europe</span>
+            <span class="fact">€5.95 shipping · EU + UK</span>
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <a class="btn btn-primary" href="#collection">See the collection</a>
@@ -138,38 +151,51 @@
       <div class="wrap">
         <p class="label">The collection</p>
         <h2>Six pieces. All black. Built to last.</h2>
-        <p class="intro">Every piece is printed when you order it, so nothing goes to waste. Photos are concept images; the real products follow at launch.</p>
+        <p class="intro">Every piece is printed when you order it, so nothing goes to waste. Pick your size, press Buy and pay on a secure payment page. Photos are concept images.</p>
+        <p class="testnote" id="testNote">TEST MODE: payments are fake. Pay with Stripe's test card 4242 4242 4242 4242, any future date, any CVC. Nothing is printed or shipped.</p>
         <div class="grid">
-          <div class="product"><div class="img"><img src="store/oversized-hoodie.jpg" alt="Oversized hoodie"></div><div class="body">
+          <div class="product" id="p-oversized-hoodie" data-id="oversized-hoodie"><div class="img"><img src="store/oversized-hoodie.jpg" alt="Oversized hoodie"></div><div class="body">
             <span class="fit">Oversized fit</span><h3>Oversized Hoodie</h3>
-            <p class="spec">Heavyweight fleece, dropped shoulders, roomy body. Logo on the chest.</p>
-            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-            <div class="soon">Coming soon</div></div></div>
-          <div class="product"><div class="img"><img src="store/regular-hoodie.jpg" alt="Regular hoodie"></div><div class="body">
+            <p class="spec">Heavyweight 339 g/m² fleece, brushed inside. Dropped shoulders, double-layered hood, front pocket. Logo on the chest.</p>
+            <div class="price" data-price>€50</div>
+            <div class="sizes" role="group" aria-label="Size"><button type="button" aria-pressed="false">S</button><button type="button" aria-pressed="false">M</button><button type="button" aria-pressed="false">L</button><button type="button" aria-pressed="false">XL</button></div>
+            <button class="buy" type="button" disabled>Coming soon</button>
+            <p class="msg" aria-live="polite"></p></div></div>
+          <div class="product" id="p-hoodie" data-id="hoodie"><div class="img"><img src="store/regular-hoodie.jpg" alt="Regular hoodie"></div><div class="body">
             <span class="fit">Regular fit</span><h3>Hoodie</h3>
-            <p class="spec">Heavyweight organic cotton fleece, a little closer to the body. Logo on the chest.</p>
-            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-            <div class="soon">Coming soon</div></div></div>
-          <div class="product"><div class="img"><img src="store/oversized-tee.jpg" alt="Oversized heavyweight tee"></div><div class="body">
-            <span class="fit">Oversized · heavyweight</span><h3>Bulk Tee</h3>
-            <p class="spec">100% ring-spun cotton, about 220 GSM. Boxy and thick, holds its shape.</p>
-            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-            <div class="soon">Coming soon</div></div></div>
-          <div class="product"><div class="img"><img src="store/regular-tee.jpg" alt="Regular tee"></div><div class="body">
+            <p class="spec">288 g/m² fleece with a soft 100% cotton face. 3-panel hood, flat drawstrings, front pouch pocket. Logo on the chest.</p>
+            <div class="price" data-price>€40</div>
+            <div class="sizes" role="group" aria-label="Size"><button type="button" aria-pressed="false">XS</button><button type="button" aria-pressed="false">S</button><button type="button" aria-pressed="false">M</button><button type="button" aria-pressed="false">L</button><button type="button" aria-pressed="false">XL</button></div>
+            <button class="buy" type="button" disabled>Coming soon</button>
+            <p class="msg" aria-live="polite"></p></div></div>
+          <div class="product" id="p-heavyweight-tee" data-id="heavyweight-tee"><div class="img"><img src="store/oversized-tee.jpg" alt="Oversized heavyweight tee"></div><div class="body">
+            <span class="fit">Oversized · heavyweight</span><h3>Heavyweight Tee</h3>
+            <p class="spec">100% cotton, 240 g/m². Garment-dyed faded black, pre-shrunk. Boxy fit, dropped shoulders, wide neck rib.</p>
+            <div class="price" data-price>€40</div>
+            <div class="sizes" role="group" aria-label="Size"><button type="button" aria-pressed="false">XS</button><button type="button" aria-pressed="false">S</button><button type="button" aria-pressed="false">M</button><button type="button" aria-pressed="false">L</button><button type="button" aria-pressed="false">XL</button></div>
+            <button class="buy" type="button" disabled>Coming soon</button>
+            <p class="msg" aria-live="polite"></p></div></div>
+          <div class="product" id="p-tee" data-id="tee"><div class="img"><img src="store/regular-tee.jpg" alt="Regular tee"></div><div class="body">
             <span class="fit">Regular fit</span><h3>Tee</h3>
-            <p class="spec">Combed ring-spun cotton, 180 – 210 GSM. Your everyday tee.</p>
-            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-            <div class="soon">Coming soon</div></div></div>
-          <div class="product"><div class="img"><img src="store/compression-tee.jpg" alt="Compression tee"></div><div class="body">
+            <p class="spec">100% organic ring-spun cotton, 180 g/m² (GOTS certified). Soft, light, your everyday tee.</p>
+            <div class="price" data-price>€25</div>
+            <div class="sizes" role="group" aria-label="Size"><button type="button" aria-pressed="false">XS</button><button type="button" aria-pressed="false">S</button><button type="button" aria-pressed="false">M</button><button type="button" aria-pressed="false">L</button><button type="button" aria-pressed="false">XL</button></div>
+            <button class="buy" type="button" disabled>Coming soon</button>
+            <p class="msg" aria-live="polite"></p></div></div>
+          <div class="product" id="p-compression-tee" data-id="compression-tee"><div class="img"><img src="store/compression-tee.jpg" alt="Compression tee"></div><div class="body">
             <span class="fit">Compression fit</span><h3>Compression Tee</h3>
-            <p class="spec">80% polyester, 20% spandex. 4-way stretch, sweat-wicking, flat seams. Short sleeves.</p>
-            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-            <div class="soon">Coming soon</div></div></div>
-          <div class="product"><div class="img"><img src="store/baggy-sweatpants.jpg" alt="Baggy gym sweatpants"></div><div class="body">
-            <span class="fit">Baggy · gym</span><h3>Baggy Sweatpants</h3>
-            <p class="spec">Heavyweight fleece gym sweatpants. Wide leg, elastic waist + drawstring, side pockets, cut long to stack over your shoes.</p>
-            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-            <div class="soon">Coming soon</div></div></div>
+            <p class="spec">88% recycled polyester, 12% elastane, 230 g/m². Stretchy, sweat-wicking, UPF 50+. Short sleeves.</p>
+            <div class="price" data-price>€50</div>
+            <div class="sizes" role="group" aria-label="Size"><button type="button" aria-pressed="false">XS</button><button type="button" aria-pressed="false">S</button><button type="button" aria-pressed="false">M</button><button type="button" aria-pressed="false">L</button><button type="button" aria-pressed="false">XL</button></div>
+            <button class="buy" type="button" disabled>Coming soon</button>
+            <p class="msg" aria-live="polite"></p></div></div>
+          <div class="product" id="p-baggy-sweatpants" data-id="baggy-sweatpants"><div class="img"><img src="store/baggy-sweatpants.jpg" alt="Baggy gym sweatpants"></div><div class="body">
+            <span class="fit">Baggy · gym</span><h3>Baggy Gym Sweatpants</h3>
+            <p class="spec">Heavy 308 g/m² stretch fabric. Wide leg, relaxed fit, elastic waist with drawstring, side pockets. Logo on the thigh.</p>
+            <div class="price" data-price>€60</div>
+            <div class="sizes" role="group" aria-label="Size"><button type="button" aria-pressed="false">XS</button><button type="button" aria-pressed="false">S</button><button type="button" aria-pressed="false">M</button><button type="button" aria-pressed="false">L</button><button type="button" aria-pressed="false">XL</button></div>
+            <button class="buy" type="button" disabled>Coming soon</button>
+            <p class="msg" aria-live="polite"></p></div></div>
         </div>
       </div>
     </section>
@@ -178,15 +204,15 @@
       <div class="wrap">
         <p class="label">Fabric &amp; quality</p>
         <h2>What it's made of.</h2>
-        <p class="intro">Thick, soft and built to survive the wash. Exact fabric weights per piece are confirmed at launch.</p>
+        <p class="intro">Thick, soft and built to survive the wash. Every piece is printed and sewn to order by our production partner in Europe.</p>
         <table class="specs">
           <tr><th>Piece</th><th>Fabric</th><th>Weight / feel</th><th>Fit</th></tr>
-          <tr><td><b>Oversized Hoodie</b></td><td>Cotton-rich fleece, brushed inside</td><td>Heavyweight</td><td>Oversized, dropped shoulders</td></tr>
-          <tr><td><b>Hoodie</b></td><td>Organic cotton fleece</td><td>Heavyweight</td><td>Regular, a bit smaller</td></tr>
-          <tr><td><b>Bulk Tee</b></td><td>100% ring-spun cotton</td><td>~220 GSM</td><td>Oversized, boxy</td></tr>
-          <tr><td><b>Tee</b></td><td>Combed ring-spun cotton</td><td>180 – 210 GSM</td><td>Regular</td></tr>
-          <tr><td><b>Compression Tee</b></td><td>80% polyester, 20% spandex</td><td>Stretch, sweat-wicking</td><td>Tight, second skin</td></tr>
-          <tr><td><b>Baggy Sweatpants</b></td><td>Cotton-blend fleece, brushed inside</td><td>Heavyweight, room to squat</td><td>Baggy wide leg, long (stacks), elastic waist</td></tr>
+          <tr><td><b>Oversized Hoodie</b></td><td>60% combed ring-spun cotton, 40% polyester fleece, brushed inside</td><td>339 g/m² · heavyweight</td><td>Oversized, dropped shoulders, double hood</td></tr>
+          <tr><td><b>Hoodie</b></td><td>65% ring-spun cotton, 35% polyester, 100% cotton face</td><td>288 g/m²</td><td>Regular</td></tr>
+          <tr><td><b>Heavyweight Tee</b></td><td>100% cotton, garment-dyed, pre-shrunk</td><td>240 g/m² · heavyweight</td><td>Boxy, oversized</td></tr>
+          <tr><td><b>Tee</b></td><td>100% organic ring-spun cotton (GOTS)</td><td>180 g/m²</td><td>Regular</td></tr>
+          <tr><td><b>Compression Tee</b></td><td>88% recycled polyester, 12% elastane</td><td>230 g/m² · UPF 50+</td><td>Tight, second skin</td></tr>
+          <tr><td><b>Baggy Gym Sweatpants</b></td><td>95% recycled polyester, 5% elastane</td><td>308 g/m² · stretch</td><td>Wide leg, relaxed, elastic waist</td></tr>
         </table>
       </div>
     </section>
@@ -208,10 +234,12 @@
         <p class="label">Good to know</p>
         <h2>Questions.</h2>
         <div class="faq" style="margin-top:20px">
-          <div class="q"><b>When does it drop?</b><span>Soon. Follow the app for the launch, Drop 001 goes live here first.</span></div>
-          <div class="q"><b>How does shipping work?</b><span>Every piece is made when you order it and shipped from Europe. Delivery times and costs are shown at checkout.</span></div>
+          <div class="q"><b>When can I order?</b><span>As soon as the Buy buttons are on, Drop 001 is live. Until then they say "Coming soon". Follow the app for the launch.</span></div>
+          <div class="q"><b>Shipping</b><span>€5.95 per order to the EU and the UK. Every piece is made for you in 2 – 5 working days, then delivery takes about 4 – 7 days. You get the tracking link by email.</span></div>
+          <div class="q"><b>How can I pay?</b><span>Card, PayPal, iDEAL, Apple Pay and Google Pay, on a secure Stripe payment page. We never see your card details.</span></div>
+          <div class="q"><b>Wrong size or changed your mind?</b><span>Return it within 14 days after delivery. Unworn and unwashed, you pay the return shipping, we refund the rest. <a href="shipping-returns.html" style="color:var(--accent)">Shipping &amp; returns</a></span></div>
           <div class="q"><b>Between two sizes?</b><span>Oversized pieces: take your normal size for the baggy look. Regular pieces: size up. Compression tee: size up if you're muscular.</span></div>
-          <div class="q"><b>Something wrong with your order?</b><span>Misprint or damage? Email <a href="mailto:BrickByBrick@buildyourfuture.fit" style="color:var(--accent)">BrickByBrick@buildyourfuture.fit</a> with a photo and we'll make it right.</span></div>
+          <div class="q"><b>Something wrong with your order?</b><span>Misprint or damage? Email <a href="mailto:BrickByBrick@buildyourfuture.fit" style="color:var(--accent)">BrickByBrick@buildyourfuture.fit</a> with a photo within 30 days and we'll send a new one for free.</span></div>
         </div>
       </div>
     </section>
@@ -220,8 +248,79 @@
   <footer>
     <div class="wrap">
       <span>© 2026 Build Your Future™. All rights reserved. Designs and logos may not be copied.</span>
-      <span><a href="index.html">Home</a> · <a href="eula.html">EULA &amp; Terms</a> · <a href="privacy.html">Privacy</a></span>
+      <span><a href="index.html">Home</a> · <a href="shipping-returns.html">Shipping &amp; returns</a> · <a href="eula.html">EULA &amp; Terms</a> · <a href="privacy.html">Privacy</a></span>
     </div>
   </footer>
+  <script>
+  // Drop 001 checkout. The Buy buttons only switch on when the shop server says the store is open.
+  (function () {
+    var API = "https://cyan-otter-83814.zap.cloud:8443";
+    var open = false;
+    var cards = [].slice.call(document.querySelectorAll(".product[data-id]"));
+
+    function euro(c) { return "€" + (c % 100 ? (c / 100).toFixed(2) : String(c / 100)); }
+    function chosen(card) { var b = card.querySelector(".sizes button.sel"); return b ? b.textContent : ""; }
+    function label(card) {
+      var buy = card.querySelector(".buy");
+      if (!open) return;
+      var size = chosen(card);
+      buy.textContent = size ? "Buy · size " + size + " · " + card.dataset.priceText : "Choose your size";
+    }
+
+    cards.forEach(function (card) {
+      var buttons = [].slice.call(card.querySelectorAll(".sizes button"));
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          buttons.forEach(function (x) { x.classList.remove("sel"); x.setAttribute("aria-pressed", "false"); });
+          b.classList.add("sel"); b.setAttribute("aria-pressed", "true");
+          card.querySelector(".msg").textContent = ""; card.querySelector(".msg").classList.remove("err");
+          label(card);
+        });
+      });
+      card.dataset.priceText = card.querySelector("[data-price]").textContent;
+      card.querySelector(".buy").addEventListener("click", function () {
+        var buy = this, msg = card.querySelector(".msg"), size = chosen(card);
+        if (!open) return;
+        if (!size) { msg.textContent = "Pick your size first."; msg.classList.add("err"); return; }
+        buy.disabled = true; buy.textContent = "Opening the payment page…";
+        msg.textContent = ""; msg.classList.remove("err");
+        fetch(API + "/v1/shop/checkout", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ product: card.dataset.id, size: size, qty: 1 })
+        }).then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; });
+        }).then(function (res) {
+          if (res.ok && res.j.url) { window.location.href = res.j.url; return; }
+          throw new Error(res.j.detail || "Something went wrong. Try again in a minute.");
+        }).catch(function (e) {
+          buy.disabled = false; label(card);
+          msg.textContent = (e && e.message && e.message.indexOf("fetch") === -1) ? e.message : "No connection to the store. Try again in a minute.";
+          msg.classList.add("err");
+        });
+      });
+    });
+
+    fetch(API + "/v1/shop/status").then(function (r) { return r.json(); }).then(function (s) {
+      var info = {};
+      (s.products || []).forEach(function (p) { info[p.id] = p; });
+      cards.forEach(function (card) {
+        var p = info[card.dataset.id];
+        if (!p) return;
+        card.dataset.priceText = euro(p.price);
+        card.querySelector("[data-price]").textContent = euro(p.price);
+        card.querySelectorAll(".sizes button").forEach(function (b) { b.disabled = p.sizes.indexOf(b.textContent) === -1; });
+      });
+      if (!s.open) return;
+      open = true;
+      document.getElementById("dropBadge").textContent = "DROP 001 · OUT NOW";
+      if (s.test) document.getElementById("testNote").style.display = "block";
+      cards.forEach(function (card) {
+        var buy = card.querySelector(".buy");
+        if (!info[card.dataset.id]) return;
+        buy.disabled = false; buy.classList.add("live"); label(card);
+      });
+    }).catch(function () { /* store server not reachable: keep "Coming soon" */ });
+  })();
+  </script>
 </body>
 </html>

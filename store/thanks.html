@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thanks for your order · Build Your Future</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0E1117">
+  <link rel="icon" href="../icon.png">
+  <style>
+    :root { --bg:#0E1117; --card:#161A22; --card2:#1C212B; --line:#272D39; --text:#E8ECF4; --muted:#9AA4B5; --accent:#7090FF; --good:#34D399; --grad:linear-gradient(135deg,#7090FF,#7B5CFF); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: var(--accent); }
+    header { border-bottom: 1px solid var(--line); }
+    header .wrap { display: flex; align-items: center; gap: 14px; height: 80px; }
+    header img { width: 46px; height: 46px; border-radius: 12px; border: 1px solid var(--line); }
+    header b { font-size: 19px; display: block; line-height: 1.1; color: var(--text); }
+    header small { color: var(--muted); font-size: 14px; }
+    header a { text-decoration: none; display: flex; align-items: center; gap: 14px; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; width: 100%; }
+    main { flex: 1; padding: 48px 0 60px; }
+    .box { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 30px 28px; }
+    .icon { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 900; margin-bottom: 18px; background: var(--card2); border: 1px solid var(--line); }
+    .icon.ok { background: color-mix(in srgb, var(--good) 20%, var(--card2)); border-color: var(--good); color: var(--good); }
+    h1 { font-size: clamp(28px, 5vw, 36px); line-height: 1.1; margin-bottom: 10px; }
+    p { color: #C9D0DC; margin-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0 8px; }
+    td { padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+    td:first-child { color: var(--muted); width: 40%; }
+    tr:last-child td { border-bottom: 0; }
+    .next { margin-top: 18px; padding: 16px 18px; background: var(--card2); border-radius: 14px; font-size: 14.5px; color: #C9D0DC; }
+    .next li { margin: 4px 0 4px 18px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 20px; border-radius: 13px; font-weight: 800; text-decoration: none; margin-top: 20px; background: var(--grad); color: #fff; }
+    .test { display: none; margin-bottom: 14px; border: 1px solid #6b5a1e; background: #2a2412; color: #F5D77A; border-radius: 12px; padding: 8px 12px; font-size: 13.5px; }
+    .spin { width: 26px; height: 26px; border: 3px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: s 1s linear infinite; }
+    @keyframes s { to { transform: rotate(360deg); } }
+    footer { border-top: 1px solid var(--line); padding: 22px 0 36px; color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a href="../store.html"><img src="../icon.png" alt=""><span><b>Build Your Future</b><small>Store</small></span></a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="box" id="box">
+        <div class="icon"><div class="spin"></div></div>
+        <h1>Checking your payment…</h1>
+        <p>One moment.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Build Your Future™ · <a href="../shipping-returns.html">Shipping &amp; returns</a> · <a href="mailto:BrickByBrick@buildyourfuture.fit">BrickByBrick@buildyourfuture.fit</a></div>
+  </footer>
+
+  <script>
+  (function () {
+    var API = "https://cyan-otter-83814.zap.cloud:8443";
+    var box = document.getElementById("box");
+    var id = new URLSearchParams(location.search).get("session_id") || "";
+    var tries = 0;
+
+    function esc(t) { var d = document.createElement("div"); d.textContent = t == null ? "" : String(t); return d.innerHTML; }
+    function euro(c) { return "€" + (c / 100).toFixed(2); }
+    function show(html) { box.innerHTML = html; }
+
+    function done(o) {
+      var rows = "";
+      if (o.order) rows += "<tr><td>Order number</td><td><b>" + esc(o.order) + "</b></td></tr>";
+      rows += "<tr><td>Item</td><td>" + esc(o.product) + " · size " + esc(o.size) + (o.qty > 1 ? " · " + o.qty + " pieces" : "") + "</td></tr>";
+      rows += "<tr><td>Paid</td><td>" + euro(o.total) + " (incl. shipping)</td></tr>";
+      if (o.email) rows += "<tr><td>Confirmation sent to</td><td>" + esc(o.email) + "</td></tr>";
+      show((o.test ? '<p class="test" style="display:block">TEST ORDER: nothing was charged and nothing will be shipped.</p>' : "") +
+        '<div class="icon ok">✓</div><h1>Thanks, your order is in!</h1>' +
+        "<p>You're building your future, brick by brick. Here's what happens now:</p>" +
+        "<table>" + rows + "</table>" +
+        '<div class="next"><ul><li>Your piece is printed for you in 2 – 5 working days.</li>' +
+        "<li>Then it ships from Europe, usually in 4 – 7 days.</li>" +
+        "<li>You'll get the tracking link by email as soon as it ships.</li></ul></div>" +
+        '<p style="margin-top:14px;font-size:14px;color:var(--muted)">No email? Check your spam folder, or mail <a href="mailto:BrickByBrick@buildyourfuture.fit">BrickByBrick@buildyourfuture.fit</a>' +
+        (o.order ? " with your order number" : "") + ".</p>" +
+        '<a class="btn" href="../store.html">Back to the store</a>');
+    }
+
+    function pending() {
+      show('<div class="icon">…</div><h1>Your payment is being processed</h1>' +
+        "<p>Some payment methods take a little longer. As soon as it's confirmed, your order goes into production and you get a confirmation email.</p>" +
+        '<a class="btn" href="../store.html">Back to the store</a>');
+    }
+
+    function unknown(text) {
+      show('<div class="icon">?</div><h1>We couldn\'t load your order</h1>' +
+        "<p>" + esc(text) + "</p>" +
+        "<p>If you paid, don't worry: your order is still processed and you'll get a confirmation email. " +
+        'Questions? Mail <a href="mailto:BrickByBrick@buildyourfuture.fit">BrickByBrick@buildyourfuture.fit</a>.</p>' +
+        '<a class="btn" href="../store.html">Back to the store</a>');
+    }
+
+    function check() {
+      tries++;
+      fetch(API + "/v1/shop/order?session_id=" + encodeURIComponent(id)).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; });
+      }).then(function (res) {
+        if (!res.ok) { unknown(res.j.detail || "This order link isn't valid."); return; }
+        var o = res.j;
+        if (o.paid && (o.order || tries >= 4)) { done(o); return; }
+        if (o.pending && tries >= 4) { pending(); return; }
+        if (tries < 10) { setTimeout(check, 3000); return; }
+        o.paid ? done(o) : pending();
+      }).catch(function () {
+        if (tries < 5) { setTimeout(check, 3000); return; }
+        unknown("There's no connection to our store right now.");
+      });
+    }
+
+    if (!/^cs_(test|live)_[A-Za-z0-9]{10,200}$/.test(id)) unknown("This page needs the link from the payment page.");
+    else check();
+  })();
+  </script>
+</body>
+</html>
