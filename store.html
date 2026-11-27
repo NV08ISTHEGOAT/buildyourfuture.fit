@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Store · Build Your Future</title>
+  <meta name="description" content="Build Your Future merch: oversized and regular hoodies, heavyweight tees, compression tee and baggy pants. Drop 001, coming soon.">
+  <meta name="copyright" content="© 2026 Build Your Future. All rights reserved.">
+  <meta name="theme-color" content="#0E1117">
+  <meta property="og:title" content="Build Your Future · Store">
+  <meta property="og:image" content="https://buildyourfuture.fit/store/lookbook.jpg">
+  <link rel="icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <style>
+    :root {
+      --bg:#0E1117; --card:#161A22; --card2:#1C212B; --line:#272D39; --text:#E8ECF4; --muted:#9AA4B5;
+      --accent:#7090FF; --accent2:#7B5CFF; --good:#34D399; --grad:linear-gradient(135deg,#7090FF,#7B5CFF);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: 96px; }
+    body { background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+
+    .topbar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+    .topbar .wrap { display: flex; align-items: center; gap: 14px; height: 80px; max-width: 1200px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 50px; height: 50px; border-radius: 13px; border: 1px solid var(--line); }
+    .brand b { display: block; font-size: 20px; line-height: 1.15; }
+    .brand small { display: block; color: var(--muted); font-size: 15px; line-height: 1.2; }
+    .nav { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .nav a { font-size: 17px; color: var(--muted); padding: 11px 16px; border-radius: 12px; transition: color .15s, background .15s; }
+    .nav a:hover, .nav a.on { color: var(--text); background: var(--card); }
+    .cta-mini { color: #fff !important; background: var(--grad); font-weight: 700; padding: 12px 20px !important; }
+    @media (max-width: 640px) { .nav a:not(.cta-mini):not(.on) { display: none; } .topbar .wrap { height: 66px; } .brand img { width: 40px; height: 40px; } .brand b { font-size: 17px; } .brand small { font-size: 13px; } }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 22px; border-radius: 14px; font-weight: 700; font-size: 16px; border: 1px solid transparent; }
+    .btn-primary { background: var(--grad); color: #fff; }
+    .btn-secondary { background: var(--card); border-color: var(--line); color: var(--text); }
+
+    .hero { padding: 56px 0 30px; }
+    .hero .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: center; }
+    @media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } }
+    .drop { display: inline-block; font-size: 13px; font-weight: 800; letter-spacing: 3px; color: #fff; background: var(--grad); padding: 6px 12px; border-radius: 99px; margin-bottom: 18px; }
+    h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.02; font-weight: 900; letter-spacing: -.01em; margin-bottom: 16px; }
+    .lead { color: #C9D0DC; font-size: 19px; max-width: 520px; margin-bottom: 26px; }
+    .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+    .fact { border: 1px solid var(--line); background: var(--card); border-radius: 99px; padding: 8px 14px; font-size: 14px; color: #C9D0DC; }
+    .lookbook { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0,0,0,.45); position: relative; }
+    .lookbook img { display: block; width: 100%; }
+    .tag { position: absolute; left: 12px; top: 12px; font-size: 12px; background: rgba(14,17,23,.8); border: 1px solid var(--line); border-radius: 99px; padding: 4px 10px; color: var(--muted); }
+
+    section { padding: 50px 0; }
+    .label { color: var(--accent); font-weight: 800; letter-spacing: 3px; font-size: 13px; margin-bottom: 8px; text-transform: uppercase; }
+    h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.1; margin-bottom: 10px; }
+    .intro { color: var(--muted); font-size: 17px; max-width: 680px; margin-bottom: 28px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+    .product { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; }
+    .product .img { position: relative; aspect-ratio: 4 / 5; background: #4a4b4f; }
+    .product .img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .product .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .product h3 { font-size: 20px; }
+    .fit { color: var(--accent); font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+    .spec { color: #C9D0DC; font-size: 14.5px; }
+    .sizes { display: flex; gap: 6px; margin: 4px 0 6px; }
+    .sizes span { min-width: 38px; text-align: center; border: 1px solid var(--line); border-radius: 9px; padding: 4px 0; font-size: 13px; font-weight: 700; color: var(--text); background: var(--card2); }
+    .soon { margin-top: auto; height: 46px; border-radius: 12px; border: 1px dashed #3a4152; color: var(--muted); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; }
+
+    table.specs { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .specs th, .specs td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); font-size: 15px; vertical-align: top; }
+    .specs th { background: var(--card2); color: var(--muted); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+    .specs td { background: var(--card); color: #C9D0DC; }
+    .specs tr:last-child td { border-bottom: 0; }
+    .specs td b { color: var(--text); }
+    @media (max-width: 760px) { .specs th:nth-child(3), .specs td:nth-child(3) { display: none; } }
+
+    .guides { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    @media (max-width: 900px) { .guides { grid-template-columns: 1fr; } }
+    .guides img { width: 100%; border-radius: 16px; border: 1px solid var(--line); display: block; }
+
+    .faq { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 760px) { .faq { grid-template-columns: 1fr; } }
+    .q { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+    .q b { display: block; margin-bottom: 6px; }
+    .q span { color: #C9D0DC; font-size: 15px; }
+
+    footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--muted); font-size: 13px; }
+    footer .wrap { display: flex; gap: 12px; justify-content: space-between; flex-wrap: wrap; }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <img src="icon.png" alt="">
+        <span><b>Build Your Future</b><small>brick by brick</small></span>
+      </a>
+      <nav class="nav">
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#features">Features</a>
+        <a href="store.html" class="on">Store</a>
+        <a href="index.html#download" class="cta-mini">Get the app</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="wrap">
+        <div>
+          <span class="drop">DROP 001 · COMING SOON</span>
+          <h1>Wear the work.</h1>
+          <p class="lead">Heavyweight hoodies, tees, a compression tee and baggy pants that stack over your shoes. Clean black, the Build Your Future logo on the chest. Made for people who show up every day.</p>
+          <div class="facts">
+            <span class="fact">Heavyweight cotton</span>
+            <span class="fact">Sizes XS – XL</span>
+            <span class="fact">Made to order</span>
+            <span class="fact">Shipped from Europe</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn btn-primary" href="#collection">See the collection</a>
+            <a class="btn btn-secondary" href="#sizes">Size guide</a>
+          </div>
+        </div>
+        <div class="lookbook">
+          <img src="store/lookbook.jpg" alt="Build Your Future Drop 001 lookbook: hoodies, tees and baggy pants in black">
+          <span class="tag">Concept lookbook</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="collection">
+      <div class="wrap">
+        <p class="label">The collection</p>
+        <h2>Six pieces. All black. Built to last.</h2>
+        <p class="intro">Every piece is printed when you order it, so nothing goes to waste. Photos are concept images; the real products follow at launch.</p>
+        <div class="grid">
+          <div class="product"><div class="img"><img src="store/oversized-hoodie.jpg" alt="Oversized hoodie"></div><div class="body">
+            <span class="fit">Oversized fit</span><h3>Oversized Hoodie</h3>
+            <p class="spec">Heavyweight fleece, dropped shoulders, roomy body. Logo on the chest.</p>
+            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+            <div class="soon">Coming soon</div></div></div>
+          <div class="product"><div class="img"><img src="store/regular-hoodie.jpg" alt="Regular hoodie"></div><div class="body">
+            <span class="fit">Regular fit</span><h3>Hoodie</h3>
+            <p class="spec">Heavyweight organic cotton fleece, a little closer to the body. Logo on the chest.</p>
+            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+            <div class="soon">Coming soon</div></div></div>
+          <div class="product"><div class="img"><img src="store/oversized-tee.jpg" alt="Oversized heavyweight tee"></div><div class="body">
+            <span class="fit">Oversized · heavyweight</span><h3>Bulk Tee</h3>
+            <p class="spec">100% ring-spun cotton, about 220 GSM. Boxy and thick, holds its shape.</p>
+            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+            <div class="soon">Coming soon</div></div></div>
+          <div class="product"><div class="img"><img src="store/regular-tee.jpg" alt="Regular tee"></div><div class="body">
+            <span class="fit">Regular fit</span><h3>Tee</h3>
+            <p class="spec">Combed ring-spun cotton, 180 – 210 GSM. Your everyday tee.</p>
+            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+            <div class="soon">Coming soon</div></div></div>
+          <div class="product"><div class="img"><img src="store/compression-tee.jpg" alt="Compression tee"></div><div class="body">
+            <span class="fit">Compression fit</span><h3>Compression Tee</h3>
+            <p class="spec">80% polyester, 20% spandex. 4-way stretch, sweat-wicking, flat seams. Short sleeves.</p>
+            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+            <div class="soon">Coming soon</div></div></div>
+          <div class="product"><div class="img"><img src="store/baggy-pants.jpg" alt="Baggy pants"></div><div class="body">
+            <span class="fit">Baggy · wide leg</span><h3>Baggy Pants</h3>
+            <p class="spec">Heavyweight cotton-blend fleece, wide leg, cut long to stack over your shoes. Elastic waist + drawstring.</p>
+            <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+            <div class="soon">Coming soon</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quality">
+      <div class="wrap">
+        <p class="label">Fabric &amp; quality</p>
+        <h2>What it's made of.</h2>
+        <p class="intro">Thick, soft and built to survive the wash. Exact fabric weights per piece are confirmed at launch.</p>
+        <table class="specs">
+          <tr><th>Piece</th><th>Fabric</th><th>Weight / feel</th><th>Fit</th></tr>
+          <tr><td><b>Oversized Hoodie</b></td><td>Cotton-rich fleece, brushed inside</td><td>Heavyweight</td><td>Oversized, dropped shoulders</td></tr>
+          <tr><td><b>Hoodie</b></td><td>Organic cotton fleece</td><td>Heavyweight</td><td>Regular, a bit smaller</td></tr>
+          <tr><td><b>Bulk Tee</b></td><td>100% ring-spun cotton</td><td>~220 GSM</td><td>Oversized, boxy</td></tr>
+          <tr><td><b>Tee</b></td><td>Combed ring-spun cotton</td><td>180 – 210 GSM</td><td>Regular</td></tr>
+          <tr><td><b>Compression Tee</b></td><td>80% polyester, 20% spandex</td><td>Stretch, sweat-wicking</td><td>Tight, second skin</td></tr>
+          <tr><td><b>Baggy Pants</b></td><td>Cotton-blend fleece</td><td>Heavyweight</td><td>Wide leg, long (stacks)</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="sizes">
+      <div class="wrap">
+        <p class="label">Size guide</p>
+        <h2>Find your size: XS to XL.</h2>
+        <p class="intro">By your height, weight and chest or waist, in feet &amp; inches and metres &amp; cm.</p>
+        <div class="guides">
+          <img src="store/size-guide-tops.png" alt="Size guide tops: XS 1.55-1.65 m (5'1&quot;-5'5&quot;), S 1.63-1.73 m, M 1.70-1.80 m, L 1.78-1.85 m, XL 1.83-1.93 m">
+          <img src="store/size-guide-pants.png" alt="Size guide baggy pants: waist XS 66-71 cm, S 71-76 cm, M 76-84 cm, L 84-91 cm, XL 91-102 cm">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <p class="label">Good to know</p>
+        <h2>Questions.</h2>
+        <div class="faq" style="margin-top:20px">
+          <div class="q"><b>When does it drop?</b><span>Soon. Follow the app for the launch, Drop 001 goes live here first.</span></div>
+          <div class="q"><b>How does shipping work?</b><span>Every piece is made when you order it and shipped from Europe. Delivery times and costs are shown at checkout.</span></div>
+          <div class="q"><b>Between two sizes?</b><span>Oversized pieces: take your normal size for the baggy look. Regular pieces: size up. Compression tee: size up if you're muscular.</span></div>
+          <div class="q"><b>Something wrong with your order?</b><span>Misprint or damage? Email <a href="mailto:BrickByBrick@buildyourfuture.fit" style="color:var(--accent)">BrickByBrick@buildyourfuture.fit</a> with a photo and we'll make it right.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Build Your Future™. All rights reserved. Designs and logos may not be copied.</span>
+      <span><a href="index.html">Home</a> · <a href="eula.html">EULA &amp; Terms</a> · <a href="privacy.html">Privacy</a></span>
+    </div>
+  </footer>
+</body>
+</html>
