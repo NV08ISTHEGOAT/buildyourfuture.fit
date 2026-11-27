@@ -1,0 +1,16 @@
+Copyright (c) 2026 Build Your Future. All rights reserved.
+
+This is the website buildyourfuture.fit. Its pages, code, design, texts,
+images, videos, voice-overs and downloads are protected by copyright.
+
+You may view the website and use the downloads under the Build Your Future
+EULA (https://buildyourfuture.fit/eula.html). Nothing here is open source:
+no license is granted to copy, mirror, modify, redistribute or reuse any part
+of this repository or website, including the installer source code, which is
+published only so people can check that it is safe.
+
+The installer's signing engine (engine/plumesign.exe, Impactor) is a separate
+open-source project under its own MIT license.
+
+"Build Your Future" and "Brick By Brick" are trademarks of the owner.
+Report copies: BrickByBrick@buildyourfuture.fit

@@ -1,3 +1,6 @@
+# Copyright (c) 2026 Build Your Future. All rights reserved.
+# Published only so anyone can check that it is safe. This is NOT open source: no license is granted
+# to copy, modify, reuse or redistribute it. Terms: https://buildyourfuture.fit/eula.html
 # Builds "Build Your Future Installer.exe" with the C# compiler that comes with Windows (.NET Framework 4).
 param([string]$Out = (Join-Path (Split-Path -Parent $PSScriptRoot) 'Build Your Future Installer.exe'))
 

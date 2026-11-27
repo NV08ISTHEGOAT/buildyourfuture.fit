@@ -1,3 +1,7 @@
+// Copyright (c) 2026 Build Your Future. All rights reserved.
+// Published only so anyone can check that it is safe. This is NOT open source: no license is granted
+// to copy, modify, reuse or redistribute it. Terms: https://buildyourfuture.fit/eula.html
+//
 // Build Your Future Installer
 // A small desktop app: shows your iPhone, how many days the app has left, the installed vs newest version,
 // and refreshes it (auto-refresh when you plug in, or with 1 day left).
@@ -33,6 +37,15 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Forms = System.Windows.Forms;
 using Drawing = System.Drawing;
+
+// Shown in Windows under the file's Properties > Details.
+[assembly: System.Reflection.AssemblyTitle("Build Your Future Installer")]
+[assembly: System.Reflection.AssemblyProduct("Build Your Future")]
+[assembly: System.Reflection.AssemblyCompany("Build Your Future")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright (c) 2026 Build Your Future. All rights reserved.")]
+[assembly: System.Reflection.AssemblyTrademark("Build Your Future, Brick By Brick")]
+[assembly: System.Reflection.AssemblyVersion("1.4.0.0")]
+[assembly: System.Reflection.AssemblyFileVersion("1.4.0.0")]
 
 namespace BuildYourFuture
 {
